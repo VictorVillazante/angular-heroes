@@ -16,7 +16,7 @@ export class HeroeComponent implements OnInit {
     this.heroes = this.heroesService.getHeroes();
     console.log(this.heroes);
   }
-  verMas(nombre: number){
+  verMas(nombre: any){
     this.router.navigate(['/heroe', nombre]);
   }
 }

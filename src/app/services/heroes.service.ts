@@ -58,7 +58,7 @@ export class HeroesService{
     getHeroes(): Heroe[]{
         return this.heroes;
     }
-    getHeroe(nombre: string):Heroe{
+    getHeroe(nombre: string):any{
       for(let heroeEnc of this.heroes){
         let nombreEnc: string= heroeEnc.nombre.toLowerCase();
         if( nombreEnc === (nombre.toLocaleLowerCase() )) {
@@ -66,7 +66,7 @@ export class HeroesService{
         }
       }
     }
-    buscarHeroes( termino: string):Heroe[]{
+    buscarHeroes( termino: any):Heroe[]{
       let heroeArray:Heroe[] = [];
       termino = termino.toLowerCase();
       for(let heroeE of this.heroes){

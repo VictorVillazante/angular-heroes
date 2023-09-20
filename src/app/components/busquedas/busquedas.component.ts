@@ -7,7 +7,7 @@ import { HeroesService, Heroe } from '../../services/heroes.service';
 })
 export class BusquedasComponent implements OnInit {
   heroesOpc: Heroe[] = [];
-  termino: string;
+  termino: string | undefined;
   constructor(private activateRoute: ActivatedRoute, private heroesService: HeroesService, private router: Router) {
     this.activateRoute.params.subscribe( params => {
       this.termino = params['termino'];
@@ -17,7 +17,7 @@ export class BusquedasComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  verMas(nombre: number){
+  verMas(nombre: any){
     this.router.navigate(['/heroe', nombre]);
   }
 }
