@@ -1,4 +1,3 @@
 <div class="row">
-    <!--*ngFor="let heroe of heroes;let i = index"-->
-    <app-heroe-tarjeta style="width: 18rem; height: 700px;" (heroeSeleccionado)="verMas($event)" [heroe]="heroe" *ngFor="let heroe of heroes;let i = index"></app-heroe-tarjeta>
+    <app-heroe-tarjeta (heroeSeleccionado)="verMas($event)" [heroe]="heroe" *ngFor="let heroe of heroes;let i = index"></app-heroe-tarjeta>
 </div>

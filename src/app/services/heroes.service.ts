@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-@Injectable()
+import { Heroe } from '../models/Heroe';
+@Injectable(
+  {
+    providedIn: 'root'
+  }
+)
 export class HeroesService{
     private heroes: Heroe[] = [
         {
@@ -53,35 +58,17 @@ export class HeroesService{
         }
       ];
     constructor() {
-        console.log('Servicio listo para usar!!');
     }
     getHeroes(): Heroe[]{
         return this.heroes;
     }
-    getHeroe(nombre: string):any{
-      for(let heroeEnc of this.heroes){
-        let nombreEnc: string= heroeEnc.nombre.toLowerCase();
-        if( nombreEnc === (nombre.toLocaleLowerCase() )) {
-          return heroeEnc;
-        }
-      }
+    getHeroe(nombre: string): Heroe | undefined { 
+      const heroeEnc = this.heroes.find(heroe => heroe.nombre.toLowerCase() === nombre.toLowerCase());
+      return heroeEnc;
     }
-    buscarHeroes( termino: any):Heroe[]{
-      let heroeArray:Heroe[] = [];
-      termino = termino.toLowerCase();
-      for(let heroeE of this.heroes){
-        let nombre: string = heroeE.nombre.toLowerCase();
-        if ( nombre.indexOf(termino) >= 0 ){
-          heroeArray.push(heroeE);
-        }
-      }
-      return heroeArray;
+  
+    buscarHeroes(termino: string): Heroe[] {
+      const lowerTermino = termino.toLowerCase();
+      return this.heroes.filter(heroe => heroe.nombre.toLowerCase().includes(lowerTermino));
     }
-}
-export interface Heroe{
-    nombre: string;
-    bio: string;
-    img: string;
-    aparicion: string;
-    casa: string;
 }

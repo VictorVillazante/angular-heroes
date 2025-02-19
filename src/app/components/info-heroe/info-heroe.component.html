@@ -1,21 +1,23 @@
-<h1 class="animated fadeIn fast">{{heroe.nombre | uppercase}} (<small>{{heroe.aparicion | date:'y'}} </small>) </h1>
+<h1 class="animated fadeIn fast">{{heroe?.nombre | uppercase}} (<small>{{heroe?.aparicion | date:'y'}} </small>) </h1>
 <hr>
 <div class="row animated fadeIn">
     <div class="col-md-4">
-        <img [src]="heroe.img" class="img-fluid" alt="">
+        <img *ngIf="heroe" [src]="heroe.img" class="img-fluid" alt="">
         <br><br>
         <a class="btn_regresar_info_heroe" [routerLink]="['/heroes']" class="btn btn-outline-danger btn-block">Regresar</a>
     </div>
     <div class="col-md-8">
-        <h3>{{heroe.nombre}}</h3>
+        <h3>{{heroe?.nombre}}</h3>
         <p>
-            {{heroe.bio}}
+            {{heroe?.bio}}
         </p>
-        <div class="caja_casa" *ngIf="heroe.casa=='Marvel'">
-            <img class="img_casa" src="./../../../assets/img/marvel.png" alt="" style="width: 200px; height: 200px;">
-        </div>
-        <div class="caja_casa" *ngIf="heroe.casa=='DC'">
-            <img class="img_casa" src="./../../../assets/img/dc.jpg" alt="" style="width: 200px; height: 200px;">
+        <div class="caja_casa" [ngSwitch]="heroe?.casa">
+            <div *ngSwitchCase="'Marvel'">
+                <img class="img_casa" src="./../../../assets/img/marvel.png" alt="">
+            </div>
+            <div *ngSwitchCase="'DC'">
+                <img class="img_casa" src="./../../../assets/img/dc.jpg" alt="">
+            </div>
         </div>
     </div>
 </div>
